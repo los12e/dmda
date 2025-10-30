@@ -1,0 +1,29 @@
+# Create a sample of 50 normally distributed numbers 
+y <- rnorm(50) 
+# Plot histogram on screen 
+hist(y, 
+breaks = 10,             
+col = "skyblue",         
+border = "black",        
+# number of bins 
+# bar color 
+# bar border 
+main = "Histogram of Normally Distributed Sample", 
+xlab = "Values", 
+     ylab = "Frequency") 
+ 
+# Save the histogram as PNG 
+png(file = "rnorm_histogram.png", width = 800, height = 600) 
+hist(y, 
+     breaks = 10, 
+     col = "skyblue", 
+     border = "black", 
+     main = "Histogram of Normally Distributed Sample", 
+     xlab = "Values", 
+     ylab = "Frequency") 
+dev.off() 
+ ######################################################################################################
+Output: 
+dev.off() 
+RStudioGD  
+        2 
