@@ -1,0 +1,65 @@
+# Load the built-in iris dataset 
+data(iris) 
+# Install and load required libraries 
+library(C50) 
+library(caTools) 
+# Make results reproducible 
+set.seed(7) 
+# Split data into 70% training and 30% testing 
+split <- sample.split(iris$Species, SplitRatio = 0.7) 
+training <- subset(iris, split == TRUE) 
+testing <- subset(iris, split == FALSE) 
+# Build the decision tree model 
+model <- C5.0(Species ~ ., data = training) 
+# View model summary 
+summary(model) 
+# Predict on the test data 
+pred <- predict(model, testing[,-5]) 
+# Calculate accuracy 
+a <- table(testing$Species, pred) 
+accuracy <- sum(diag(a)) / sum(a) 
+print(paste("Accuracy:", round(accuracy, 3))) 
+# Visualize the decision tree 
+plot(model)
+
+###############################################################################################################################################################################
+
+Output: 
+summary(model) 
+Call: 
+C5.0.formula(formula = Species ~ ., data = training) 
+C5.0 [Release 2.07 GPL Edition]   ------------------------------- 
+Wed Oct 22 12:00:48 2025 
+Class specified by attribute `outcome' 
+ 
+Read 105 cases (5 attributes) from undefined.data 
+ 
+Decision tree: 
+ 
+Petal.Length <= 1.7: setosa (35) 
+Petal.Length > 1.7: 
+:...Petal.Length <= 4.8: versicolor (34) 
+    Petal.Length > 4.8: virginica (36/1) 
+ 
+ 
+Evaluation on training data (105 cases): 
+ 
+     Decision Tree    
+   ----------------   
+   Size      Errors   
+ 
+      3    1( 1.0%)   << 
+ 
+ 
+    (a)   (b)   (c)    <-classified as 
+   ----  ----  ---- 
+     35                (a): class setosa 
+           34     1    (b): class versicolor 
+35    (c): class virginica 
+Attribute usage: 
+100.00% 
+Time: 0.0 secs 
+Petal.Length 
+print(paste("Accuracy:", round(accuracy, 3))) 
+[1] "Accuracy: 0.822" 
+> 
