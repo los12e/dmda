@@ -1,0 +1,7 @@
+x <- seq(-10, 10, by = 0.1) 
+y <- dnorm(x, mean = 0, sd = 1) 
+plot(x, y, 
+main = "Normal Distribution (mean = 0, sd = 1)", 
+xlab = "X", 
+ylab = "Y", 
+pch = 1)   # open circles like in your image
