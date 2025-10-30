@@ -1,0 +1,32 @@
+# Load the MASS library to access the Cars93 dataset 
+library(MASS) 
+# Display the structure of Cars93 
+print(str(Cars93)) 
+# Create a contingency table of AirBags vs Type 
+car_data <- table(Cars93$AirBags, Cars93$Type) 
+print(car_data) 
+# Perform the Chi-Square test on the table 
+chi_result <- chisq.test(car_data) 
+print(chi_result)
+###################################################################
+Output: 
+> print(str(Cars93)) 
+> # Create a contingency table of AirBags vs Type 
+> car_data <- table(Cars93$AirBags, Cars93$Type) 
+> print(car_data) 
+                     
+                     Compact Large Midsize Small Sporty Van 
+  Driver & Passenger       2     4       7     0      3   0 
+  Driver only              9     7      11     5      8   3 
+  None                     5     0       4    16      3   6 
+>  
+> # Perform the Chi-Square test on the table 
+> chi_result <- chisq.test(car_data) 
+Warning message: 
+In chisq.test(car_data) : Chi-squared approximation may be incorrect 
+> print(chi_result) 
+ 
+ Pearson's Chi-squared test 
+ 
+data:  car_data 
+X-squared = 33.001, df = 10, p-value = 0.0002723 
